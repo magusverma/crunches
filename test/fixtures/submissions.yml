@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question_id: 1
+  user_id: 1
+  status: MyString
+  submitted_answer: MyString
+  time_of_submission: 2014-08-18 17:39:29
+  ip: MyString
+
+two:
+  question_id: 1
+  user_id: 1
+  status: MyString
+  submitted_answer: MyString
+  time_of_submission: 2014-08-18 17:39:29
+  ip: MyString

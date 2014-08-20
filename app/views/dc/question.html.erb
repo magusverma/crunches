@@ -1,0 +1,45 @@
+<!-- <h1>Dc#question</h1>
+<p>Find me in app/views/dc/question.html.erb</p>
+ -->
+<h2> <%= @q.title %> , <%= @q.points %> points  </h2>
+<%= @q.problem_statement %>
+<p>
+<%= form_for(@submission) do |f| %>
+
+  <div class="field" style="display:none">
+    <%= f.label :question_id %><br>
+    <%= f.number_field :question_id ,:value => @q.id %>
+  </div>
+  <div class="field">
+    <%= f.label :Answer %><br>
+    <%= f.text_field :submitted_answer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</p>
+
+<h3>My Past submissions</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Submitted answer</th>
+      <th>Time of submission</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.submissions.where(:question_id => @q.id).each do |submission| %>
+      <tr>
+        <td><%= submission.status %></td>
+        <td><%= submission.submitted_answer %></td>
+        <td><%= submission.time_of_submission.in_time_zone("Kolkata") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

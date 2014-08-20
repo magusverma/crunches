@@ -1,0 +1,41 @@
+<% if @u.eql? @user or @user.username.eql? "admin"#todo %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Team name:</strong>
+  <%= @user.team_name %>
+</p>
+
+<p>
+  <strong>Institute:</strong>
+  <%= @user.institute %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @user.contact %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @user.ip %>
+</p>
+
+<%# link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit', "/register" %>
+<%end%>

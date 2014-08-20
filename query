@@ -1,0 +1,1 @@
+User.joins(:submissions).where("users.id = submissions.user_id and submissions.status = \"correct\"").collect{|user| user.submissions.map{|submission| submission.attributes.merge(user.attributes) } }

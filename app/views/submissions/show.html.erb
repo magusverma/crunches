@@ -1,0 +1,37 @@
+<% if @u.eql? @submission.user or @u.username.eql? "admin"#todo %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Question:</strong>
+    <%= @submission.question_id %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @submission.user.username %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @submission.status %>
+  </p>
+
+  <p>
+    <strong>Submitted answer:</strong>
+    <%= @submission.submitted_answer %>
+  </p>
+
+  <p>
+    <strong>Time of submission:</strong>
+    <%= @submission.time_of_submission %>
+  </p>
+
+  <p>
+    <strong>Ip:</strong>
+    <%= @submission.ip %>
+  </p>
+
+  <%# link_to 'Edit', edit_submission_path(@submission) %>
+  <% link = "/q/"+@submission.question_id.to_s%>
+  <%= link_to 'Back', link %>
+<%end%>

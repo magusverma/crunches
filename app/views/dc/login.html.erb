@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Login  - Data Crunches</title>
+
+  <link rel="stylesheet" href="/css/reset.css">
+
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css" />
+
+</head>
+
+<body>
+<%= form_for(@user) do |f| %>
+
+  <div class="wrap">
+    <div class="avatar">
+      <img src="/avatar.png">
+    </div>
+    
+    <!-- <input type="text" placeholder="username" required> -->
+    <%= f.text_field :username ,:placeholder => "username"%>
+    <div class="bar">
+      <i></i>
+    </div>
+    <!-- <input type="password" placeholder="password" required> -->
+    <%= f.text_field :password ,:placeholder => "password",:type=>"password"%>
+    <a href="" class="forgot_link">forgot ?</a>
+    <%= f.submit :style=>"display:none;" %>
+    <!-- <button>Sign in</button> -->
+  <!--  <button> <%= f.submit %> </button> -->
+  </div>
+<% end %>
+
+  <script src="/js/index.js"></script>
+</body>
+
+</html>

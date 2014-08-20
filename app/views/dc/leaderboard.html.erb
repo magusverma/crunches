@@ -1,0 +1,39 @@
+<h2>LeaderBoard</h1>
+<% 
+	arr = []
+	User.all.each do |u|
+		cc = u.submissions.where(status: "correct").select("distinct question_id").count
+		name = u.username
+		total = u.submissions.count
+		arr << [name,cc,total]
+	end
+	arr = arr.sort {|x,y| y[1] <=> x[1]}
+%>
+<%# arr %>
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Username</th>
+      <th>Problems Solved</th>
+      <th>Total Submissions</th>
+      <!-- <th>Aggregate Time</th>
+ -->   
+ 	</tr>
+  </thead>
+
+  <tbody>
+
+    <% arr.each_with_index do |a,i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= a[0] %></td>
+        <td><%= a[1] %></td>
+        <td><%= a[2] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
