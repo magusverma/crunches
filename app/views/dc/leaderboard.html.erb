@@ -13,7 +13,7 @@
 		points = (cc * 100) - ((total-cc) * 15) >0 ? (cc * 100) - ((total-cc) * 15) : 0
 		arr << [name,cc,total,cc1,points]
 	end
-	arr = arr.sort {|x,y| [y[4],x[3]] <=> [x[4],y[3]]}
+	arr = arr.sort_by {|x,y| [y[4],x[3]] <=> [x[4],y[3]]}
 %>
 <%# arr %>
 <table>
