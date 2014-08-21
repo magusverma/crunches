@@ -1,6 +1,6 @@
 <h2> <%= @t.name %> , <%= @t.questions.count %> questions  </h2>
 <%= @t.details %>
-        <% if theme.id.eql? 2%>
+        <% if @t.id.eql? 2%>
 You work at TMP (Upcoming Social Media Firm!!) as a Data Analyst. Your role is to analyse the information in such a way that generates profit for your firm. To help you with this task, your boss, Mr. Tiklup, gives you the following queries to find out. Can you do that in minimum amount of time to impress your boss???
 
 There is a relationship schema of a social networking site. There are three tables in it - :
