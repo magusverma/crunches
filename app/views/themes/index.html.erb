@@ -15,20 +15,6 @@
       <tr>
         <td><%= theme.name %></td>
         <td><%= theme.details %></td>
-        <% if theme.id.eql? 2%>
-You work at TMP (Upcoming Social Media Firm!!) as a Data Analyst. Your role is to analyse the information in such a way that generates profit for your firm. To help you with this task, your boss, Mr. Tiklup, gives you the following queries to find out. Can you do that in minimum amount of time to impress your boss???
-
-There is a relationship schema of a social networking site. There are three tables in it - :
-
-
-1. Person - This table contains the following columns: P_Id(Person id - Primary Key), Name, Age, Gender
-
-
-2. Friends - This table contains three columns (Id - Primary Key, P_Id1, P_Id2) - ‘P_Id1’ and ‘P_Id 2’ are friends (if ‘a’ is friend with ‘b’ then ‘b’ is also friend with ‘a’).
-
-
-3. Likes - This table also contains three columns (Id - Primary Key, P_Id1, P_Id2) -  ‘P_Id1’ likes ‘P_Id2’(if ‘a’ likes ‘b’, this does not imply that ‘b’ also likes ‘a’).
-        <% end %>
         <td><%= theme.database_url %></td>
         <td><%= link_to 'Show', theme %></td>
         <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
