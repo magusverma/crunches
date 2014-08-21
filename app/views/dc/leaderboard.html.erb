@@ -4,7 +4,10 @@
 	User.all.each do |u|
 		cc = u.submissions.where(status: "correct").select("distinct question_id").count
     # cc1 = u.submissions.where(status: "correct").count>0 ? u.submissions.where(status: "correct").order("time_of_submission").last.time_of_submission : 0
-    cc1 = u.submissions.where(status: "correct").order("time_of_submission").last.time_of_submission
+    cc1=0
+    if u.submissions.where(status: "correct").count > 0
+      cc1 = u.submissions.where(status: "correct").order("time_of_submission").last.time_of_submission
+    end
 		name = u.username
 		total = u.submissions.count
 		points = (cc * 100) - ((total-cc) * 15) >0 ? (cc * 100) - ((total-cc) * 15) : 0
