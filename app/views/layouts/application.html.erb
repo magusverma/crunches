@@ -50,6 +50,13 @@
                 
        <li class="sticker sticker-color-orangeDark"><a href="/leaderboard"><i class="icon-clipboard"></i> LeaderBoard</a></li>
         <li class="sticker sticker-color-green"><a href="/rules"><i class="icon-history"></i> Rules</a></li>
+<%if !@user.nil? and  @user.username.eql? "admin" %>
+<li class="sticker sticker-color-green"><a href="/users"><i class="icon-history"></i> ADM Users</a></li>
+<li class="sticker sticker-color-green"><a href="/submissions"><i class="icon-history"></i> ADM Submissions</a></li>
+<li class="sticker sticker-color-green"><a href="/themes"><i class="icon-history"></i> ADM Themes</a></li>
+<li class="sticker sticker-color-green"><a href="/questions"><i class="icon-history"></i> ADM Questions</a></li>
+<% end %>
+
         <li class="sticker sticker-color-green"><a href="/register"><i class="icon-history"></i> My Details</a></li>
             <% Theme.all.each do |t| %>
                 <li class="sticker sticker-color-pink dropdown active" data-role="dropdown">
