@@ -28,7 +28,7 @@ class DcController < ApplicationController
   end
 
   def theme
-    @t = Theme.find(params[:id])
+    @t = Theme.where(name: params[:id])[0]
   end
 
   def register
