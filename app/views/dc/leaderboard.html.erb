@@ -3,11 +3,12 @@
 	arr = []
 	User.all.each do |u|
 		cc = u.submissions.where(status: "correct").select("distinct question_id").count
+    cc1 = u.submissions.where(status: "correct").select("distinct question_id").order("time_of_submission").last.time_of_submission
 		name = u.username
 		total = u.submissions.count
-		arr << [name,cc,total]
+		arr << [name,cc,total,cc1]
 	end
-	arr = arr.sort {|x,y| y[1] <=> x[1]}
+	arr = arr.sort {|x,y| [y[1],y[3]] <=> [x[1],x[3]]}
 %>
 <%# arr %>
 <table>
