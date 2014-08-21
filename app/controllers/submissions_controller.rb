@@ -31,7 +31,8 @@ class SubmissionsController < ApplicationController
     @submission.time_of_submission = Time.now
     @submission.ip = request.remote_ip
     @submission.user = User.find(session[:user]) #todo
-    if @submission.submitted_answer.eql? @submission.question.answer
+    # if @submission.submitted_answer.eql? @submission.question.answer
+    if @submission.submitted_answer.gsub(/[^0-9a-z ]/i, '').downcase.eql? @submission.question.answer.gsub(/[^0-9a-z ]/i, '').downcase
       @submission.status = :correct
     else
       @submission.status = :wrong
