@@ -50,7 +50,7 @@
   <tbody>
 
     <% arr.each_with_index do |a,i| %>
-    <% if a[1] !="admin" %>
+    <% if a[0] !="admin" %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= a[0] %></td>
