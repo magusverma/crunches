@@ -27,7 +27,11 @@
     <tr>
       <th>Status</th>
       <th>Submitted answer</th>
+      <% if @q.try(:qtype).eql? "sub"  %>
+        <th>Points</th>
+       <% end %>
       <th>Time of submission</th>
+
     </tr>
   </thead>
 
@@ -36,6 +40,9 @@
       <tr>
         <td><%= submission.status %></td>
         <td><%= submission.submitted_answer %></td>
+        <% if @q.try(:qtype).eql? "sub" %>
+        <td><%= submission.points %></td>
+        <% end %>
         <td><%= submission.time_of_submission.in_time_zone("Kolkata") %></td>
       </tr>
     <% end %>

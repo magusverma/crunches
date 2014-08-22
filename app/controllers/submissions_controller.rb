@@ -1,6 +1,42 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
   before_filter :login_check, :except => [:login]
+  def subsequence(s1, s2)
+      match = 0.0
+      deno = [s1.size,s2.size].max
+
+          return 0 if s1.empty? || s2.empty?
+    if s2.size < 1000
+        s1 = s1.gsub(/[^0-9a-z]/i, '').downcase
+        s2 = s2.gsub(/[^0-9a-z]/i, '').downcase
+          num=Array.new(s1.size){Array.new(s2.size)}
+          s1.scan(/./).each_with_index{|letter1,i|
+              s2.scan(/./).each_with_index{|letter2,j|
+   
+                      if s1[i]==s2[j]
+                          if i==0||j==0
+                             num[i][j] = 1
+                          else
+                             num[i][j]  = 1 + num[i - 1][ j - 1]
+                          end
+                      else
+                          if i==0 && j==0
+                             num[i][j] = 0
+                          elsif i==0 &&  j!=0  #First ith element
+                             num[i][j] = [0,  num[i][j - 1]].max
+                          elsif j==0 && i!=0  #First jth element
+                              num[i][j] = [0, num[i - 1][j]].max
+                          elsif i != 0 && j!= 0
+                            num[i][j] = [num[i - 1][j], num[i][j - 1]].max
+                          end
+                      end
+              }
+          }
+          
+        match +=  num[s1.length - 1][s2.length - 1]
+      end 
+      return match/deno
+  end
 
   # GET /submissions
   # GET /submissions.json
@@ -8,6 +44,7 @@ class SubmissionsController < ApplicationController
     check_admin
     @submissions = Submission.all
   end
+
 
   # GET /submissions/1
   # GET /submissions/1.json
@@ -32,11 +69,25 @@ class SubmissionsController < ApplicationController
     @submission.ip = request.remote_ip
     @submission.user = User.find(session[:user]) #todo
     # if @submission.submitted_answer.eql? @submission.question.answer
-    if @submission.submitted_answer.gsub(/[^0-9a-z]/i, '').downcase.eql? @submission.question.answer.gsub(/[^0-9a-z]/i, '').downcase
-      @submission.status = :correct
-    else
-      @submission.status = :wrong
-    end  
+    if @submission.question.qtype.eql? "" or @submission.question.qtype.eql? nil    
+      if @submission.submitted_answer.gsub(/[^0-9a-z]/i, '').downcase.eql? @submission.question.answer.gsub(/[^0-9a-z]/i, '').downcase
+        # @submission.points = @submission.question.points #todo
+        @submission.status = :correct
+      else
+        # @submission.points = 0 #todo
+        @submission.status = :wrong
+      end 
+    elsif @submission.question.qtype.eql? "sub"
+      s1 = @submission.question.answer
+      s2 = @submission.submitted_answer
+      @submission.points = subsequence(s1,s2)*@submission.question.points
+      @submission.points = @submission.points.round(2)
+      if @submission.points > 0
+        @submission.status = :correct
+      else
+        @submission.status = :wrong
+      end 
+    end
     respond_to do |format|
       if @submission.save
         format.html { redirect_to @submission, notice: 'Submission was successfully created.' }

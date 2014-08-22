@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818120929) do
+ActiveRecord::Schema.define(version: 20140822031107) do
 
   create_table "questions", force: true do |t|
     t.integer  "theme_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140818120929) do
     t.text     "explanation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "qtype",             default: ""
   end
 
   create_table "submissions", force: true do |t|
@@ -33,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140818120929) do
     t.string   "ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "points"
+    t.text     "source"
   end
 
   create_table "themes", force: true do |t|

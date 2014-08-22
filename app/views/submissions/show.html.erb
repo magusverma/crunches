@@ -16,6 +16,13 @@
     <%= @submission.status %>
   </p>
 
+  <% if @submission.question.qtype.eql? "sub" %>
+  <p>
+    <strong>Points:</strong>
+    <%= @submission.points %>
+  </p>
+  <% end %>
+
   <p>
     <strong>Submitted answer:</strong>
     <%= @submission.submitted_answer %>
