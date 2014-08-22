@@ -3,12 +3,13 @@ class SubmissionsController < ApplicationController
   before_filter :login_check, :except => [:login]
   def subsequence(s1, s2)
       match = 0.0
-      deno = [s1.size,s2.size].max
+      
 
           return 0 if s1.empty? || s2.empty?
     if s2.size < 1000
         s1 = s1.gsub(/[^0-9a-z]/i, '').downcase
         s2 = s2.gsub(/[^0-9a-z]/i, '').downcase
+        deno = [s1.size,s2.size].max
           num=Array.new(s1.size){Array.new(s2.size)}
           s1.scan(/./).each_with_index{|letter1,i|
               s2.scan(/./).each_with_index{|letter2,j|
