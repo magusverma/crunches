@@ -6,7 +6,7 @@ class SubmissionsController < ApplicationController
       deno = 1
 
           return 0 if s1.empty? || s2.empty?
-    if s2.size < 1000
+    if s2.size < 2000
         s1 = s1.gsub(/[^0-9a-z]/i, '').downcase
         s2 = s2.gsub(/[^0-9a-z]/i, '').downcase
         deno = [s1.size,s2.size].max
