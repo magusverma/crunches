@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   before_filter :login_check, :except => [:login]
   def subsequence(s1, s2)
       match = 0.0
-      
+      deno = 1
 
           return 0 if s1.empty? || s2.empty?
     if s2.size < 1000
