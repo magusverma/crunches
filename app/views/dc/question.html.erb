@@ -2,7 +2,7 @@
 <p>Find me in app/views/dc/question.html.erb</p>
  -->
 <h2> <%= @q.title %> , <%= @q.points %> points  </h2>
-<%= @q.problem_statement %>
+<%= raw(@q.problem_statement) %>
 <p>
 <%= form_for(@submission) do |f| %>
 
