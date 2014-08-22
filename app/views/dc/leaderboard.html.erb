@@ -10,8 +10,23 @@
     end
 		name = u.username
 		total = u.submissions.count
+    wrong_sql = u.submissions.where(status: "wrong").count
+    
+    
     correct_submissions = u.submissions.where(status: "correct").count
-		points = (cc * 100) - ((total-correct_submissions ) * 15) >0 ? (cc * 100) - ((total-correct_submissions ) * 15) : 0
+		points = (cc * 100) - ((wrong_sql ) * 15) >0 ? (cc * 100) - ((wrong_sql) * 15) : 0
+    correct_mag = u.submissions.where(status: "correct_ans").select("distinct question_id")
+    correct_mag.each do |x|
+      max_points=0
+      submissions_for_x = u.submissions.where(question_id: x.question_id).where(status: "correct_ans")
+      submissions_for_x.each do |s|
+        if s.points > max_points
+          max_points = s.points
+        end
+        points += max_points
+      end
+    end
+
 		arr << [name,cc,total,cc1,points]
 	end
 	arr = arr.sort_by {|x,y| [y[4],x[3]] <=> [x[4],y[3]]}
