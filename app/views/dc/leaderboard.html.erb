@@ -28,7 +28,7 @@
       points += max_points
     end
 
-		arr << [name,cc+correct_mag,total,cc1,points]
+		arr << [name,cc+correct_mag.count,total,cc1,points]
 	end
 	arr = arr.sort_by {|x,y| [y[4],x[3]] <=> [x[4],y[3]]}
 %>
