@@ -1,7 +1,7 @@
 <h2> <%= @t.name %> , <%= @t.questions.count %> questions  </h2>
 <%= raw(@t.details) %>
 <p>
-<%if @t.database_url is not ""%><a href="<%=@t.database_url%>"> Download Database </a> for this theme
-</p><%end%>
+<%if @t.database_url is not ""%><a href="<%=@t.database_url%>"> Download Database </a> for this theme<%end%>
+</p>
 <!-- => #<Theme id: 1, name: "IOT", details: "Internet of Things", database_url: "google.com", created_at: "2014-08-18 12:14:29", updated_at: "2014-08-18 12:14:29">
  -->
