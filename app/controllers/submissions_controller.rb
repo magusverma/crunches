@@ -84,9 +84,9 @@ class SubmissionsController < ApplicationController
       @submission.points = subsequence(s1,s2)*@submission.question.points
       @submission.points = @submission.points.round(2)
       if @submission.points > 0
-        @submission.status = :correct
+        @submission.status = :correct_ans
       else
-        @submission.status = :wrong
+        @submission.status = :wrong_ans
       end 
     end
     respond_to do |format|
